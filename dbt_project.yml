@@ -1,0 +1,36 @@
+
+name: 'nba_monte_carlo'
+version: '1.0.0'
+config-version: 2
+profile: 'nba_monte_carlo'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"  # directory which will store compiled SQL files
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+
+# Configuring models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+models:
+  nba_monte_carlo:
+    raw:
+      +materialized: table
+    prep:
+      +materialzied: view
+    conformed:
+      +materialized: table
+
+vars:
+  scenarios: 10000            # set number of scenarios. 100k is safe on 8GB of RAM
+  include_actuals: true       # set to true to use actual game results, otherwise sim entire season
+  latest_ratings: true        # set to true to use latest ELO ratings, otherwise use start of season ratings
+  enable_export: false        # set to true to export files to parquet
+  sim_start_game_id: 0        # placeholder one multi-container is in place
