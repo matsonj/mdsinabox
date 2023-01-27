@@ -49,7 +49,7 @@
       },
       {
         // The name that shows up in the terminal tab
-        "label": "evidence",
+        "label": "dbt",
         "type": "shell",
         "command": "dbt build",
         "dependsOn": ["buenavista"],
