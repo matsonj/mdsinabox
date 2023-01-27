@@ -9,63 +9,57 @@
     },
     "tasks": [
       {
-        // The name that shows up in terminal tab
         "label": "buenavista",
-        // The task will launch a shell
         "type": "shell",
         "command": "python3 -m duckdbt.server",
-        // Mark as a background task to avoid the spinner animation on the terminal tab
         "isBackground": true,
         "problemMatcher": [],
         "group": "build",
-        // Create the tasks in a terminal group
         "presentation": {
-          "panel": "shared",
-          "close": false,
+          "panel": "dedicated",
+          "close": false
         }
       },
       {
-        // The name that shows up in the terminal tab
         "label": "evidence",
         "type": "shell",
         "command": "npm --prefix=reports run dev",
-        // Mark as a background task to avoid the spinner animation on the terminal tab
         "isBackground": true,
         "problemMatcher": [],
         "group": "build",
-        // Create the tasks in a terminal group
         "presentation": {
-          "panel": "shared",
-          "close": false,
+          "panel": "dedicated",
+          "close": false
         }
       },
       {
-        // The name that shows up in the terminal tab
         "label": "dbt",
         "type": "shell",
         "command": "dbt build",
-        // Mark as a background task to avoid the spinner animation on the terminal tab
         "isBackground": true,
         "problemMatcher": [],
         "group": "build",
-        // Create the tasks in a terminal group
         "presentation": {
           "panel": "shared",
-          "close": false,
-          }
+          "close": false
+        }
+      },
+      {
+        "label": "duckdbt!",
+        "dependsOrder": "sequence",
+        "dependsOn": [
+          "buenavista",
+          "evidence",
+          "dbt"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
         },
-        {
-          "label": "duckdbt!",
-          "dependsOrder": "sequence",
-          "dependsOn": [
-              "buenavista",
-              "evidence",
-              "dbt"
-          ],
-          "group": "build",
-          "runOptions": {
-              "runOn": "folderOpen" // This starts both tasks when the container is started
+        "runOptions": {
+          "runOn": "folderOpen"
         },
+        "problemMatcher": []
       }
     ]
   }
