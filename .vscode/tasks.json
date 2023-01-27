@@ -46,6 +46,25 @@
           "panel": "shared",
           "close": false,
         }
+      },
+      {
+        // The name that shows up in the terminal tab
+        "label": "evidence",
+        "type": "shell",
+        "command": "dbt build",
+        "dependsOn": ["buenavista"],
+        // Mark as a background task to avoid the spinner animation on the terminal tab
+        "isBackground": true,
+        "problemMatcher": [],
+        // Try start the task on folder open
+        "runOptions": {
+            "runOn": "folderOpen"
+        },
+        // Create the tasks in a terminal group
+        "presentation": {
+          "panel": "shared",
+          "close": false,
+        }
       }
     ]
   }
