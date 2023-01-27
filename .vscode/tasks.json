@@ -9,43 +9,58 @@
     },
     "tasks": [
       {
-        // The name that shows up in terminal tab
         "label": "buenavista",
-        // The task will launch a shell
         "type": "shell",
         "command": "python3 -m duckdbt.server",
-        // Mark as a background task to avoid the spinner animation on the terminal tab
         "isBackground": true,
         "problemMatcher": [],
-
-        // Try start the task on folder open
-        "runOptions": {
-            "runOn": "folderOpen"
-        },
-        // Create the tasks in a terminal group
+        "group": "build",
         "presentation": {
-          "panel": "shared",
-          "close": false,
+          "panel": "dedicated",
+          "close": false
         }
       },
       {
-        // The name that shows up in the terminal tab
         "label": "evidence",
         "type": "shell",
         "command": "npm --prefix=reports run dev",
-        "dependsOn": ["buenavista"],
-        // Mark as a background task to avoid the spinner animation on the terminal tab
         "isBackground": true,
         "problemMatcher": [],
-        // Try start the task on folder open
-        "runOptions": {
-            "runOn": "folderOpen"
-        },
-        // Create the tasks in a terminal group
+        "group": "build",
+        "presentation": {
+          "panel": "dedicated",
+          "close": false
+        }
+      },
+      {
+        "label": "dbt",
+        "type": "shell",
+        "command": "dbt build",
+        "isBackground": true,
+        "problemMatcher": [],
+        "group": "build",
         "presentation": {
           "panel": "shared",
-          "close": false,
+          "close": false
         }
+      },
+      {
+        "label": "duckdbt!",
+        "dependsOrder": "sequence",
+        "dependsOn": [
+          "buenavista",
+          // removing for now
+          // "evidence",
+          // "dbt"
+        ],
+        "group": {
+          "kind": "build",
+          "isDefault": true
+        },
+        "runOptions": {
+          "runOn": "folderOpen"
+        },
+        "problemMatcher": []
       }
     ]
   }

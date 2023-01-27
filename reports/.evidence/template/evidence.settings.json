@@ -1,0 +1,1 @@
+{"gitRepo":"https://github.com/jwills/nba_monte_carlo","database":"postgres","credentials":{"host":"127.0.0.1","database":"main","user":"josh","password":"test","port":"5433"}}
