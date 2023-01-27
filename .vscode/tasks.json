@@ -1,0 +1,51 @@
+{
+    "version": "2.0.0",
+    "presentation": {
+      "echo": false,
+      "reveal": "always",
+      "focus": false,
+      "panel": "dedicated",
+      "showReuseMessage": true
+    },
+    "tasks": [
+      {
+        // The name that shows up in terminal tab
+        "label": "buenavista",
+        // The task will launch a shell
+        "type": "shell",
+        "command": "python3 -m duckdbt.server",
+        // Mark as a background task to avoid the spinner animation on the terminal tab
+        "isBackground": true,
+        "problemMatcher": [],
+
+        // Try start the task on folder open
+        "runOptions": {
+            "runOn": "folderOpen"
+        },
+        // Create the tasks in a terminal group
+        "presentation": {
+          "panel": "shared",
+          "close": false,
+        }
+      },
+      {
+        // The name that shows up in the terminal tab
+        "label": "evidence",
+        "type": "shell",
+        "command": "npm --prefix=reports run dev",
+        "dependsOn": ["buenavista"],
+        // Mark as a background task to avoid the spinner animation on the terminal tab
+        "isBackground": true,
+        "problemMatcher": [],
+        // Try start the task on folder open
+        "runOptions": {
+            "runOn": "folderOpen"
+        },
+        // Create the tasks in a terminal group
+        "presentation": {
+          "panel": "shared",
+          "close": false,
+        }
+      }
+    ]
+  }
