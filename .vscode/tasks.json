@@ -49,8 +49,9 @@
         "dependsOrder": "sequence",
         "dependsOn": [
           "buenavista",
-          "evidence",
-          "dbt"
+          // removing for now
+          // "evidence",
+          // "dbt"
         ],
         "group": {
           "kind": "build",
