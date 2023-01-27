@@ -17,11 +17,7 @@
         // Mark as a background task to avoid the spinner animation on the terminal tab
         "isBackground": true,
         "problemMatcher": [],
-
-        // Try start the task on folder open
-        "runOptions": {
-            "runOn": "folderOpen"
-        },
+        "group": "build",
         // Create the tasks in a terminal group
         "presentation": {
           "panel": "shared",
@@ -33,14 +29,10 @@
         "label": "evidence",
         "type": "shell",
         "command": "npm --prefix=reports run dev",
-        "dependsOn": ["buenavista"],
         // Mark as a background task to avoid the spinner animation on the terminal tab
         "isBackground": true,
         "problemMatcher": [],
-        // Try start the task on folder open
-        "runOptions": {
-            "runOn": "folderOpen"
-        },
+        "group": "build",
         // Create the tasks in a terminal group
         "presentation": {
           "panel": "shared",
@@ -52,19 +44,27 @@
         "label": "dbt",
         "type": "shell",
         "command": "dbt build",
-        "dependsOn": ["buenavista"],
         // Mark as a background task to avoid the spinner animation on the terminal tab
         "isBackground": true,
         "problemMatcher": [],
-        // Try start the task on folder open
-        "runOptions": {
-            "runOn": "folderOpen"
-        },
+        "group": "build",
         // Create the tasks in a terminal group
         "presentation": {
           "panel": "shared",
           "close": false,
-        }
+          }
+        },
+        {
+          "label": "duckdbt!",
+          "dependsOn": [
+              "buenavista",
+              "evidence",
+              "dbt"
+          ],
+          "group": "build",
+          "runOptions": {
+              "runOn": "folderOpen" // This starts both tasks when the container is started
+        },
       }
     ]
   }
