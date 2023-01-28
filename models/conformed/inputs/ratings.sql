@@ -9,5 +9,5 @@ SELECT
     orig.elo_rating AS original_rating,
     orig.win_total
 FROM {{ ref( 'prep_team_ratings' ) }} orig
-LEFT JOIN {{ ref( 'prep_elo_post' ) }} latest ON latest.team = orig.team
+LEFT JOIN {{ ref( 'latest_elo_by_team' ) }} latest ON latest.team = orig.team
 GROUP BY ALL

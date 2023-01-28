@@ -13,7 +13,7 @@ models:
   - name: prep_xf_series_to_seed
     tests:
       - empty_table
-  - name: prep_latest_ratings
+  - name: latest_ratings
     columns:
       - name: team
         tests:
