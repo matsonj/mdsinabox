@@ -8,5 +8,5 @@ SELECT
         ELSE 0
     END AS game_result
 FROM {{ ref('raw_nba_elo_latest') }} S
--- WHERE score1 IS NOT NULL
+WHERE score1 IS NOT NULL
 GROUP BY ALL

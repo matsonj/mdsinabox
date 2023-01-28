@@ -10,7 +10,7 @@ def model(dbt, sess):
     working_elo = original_elo.copy()
 
     # loop over the historical game data and update the elo ratings as we go
-    nba_elo_latest = (dbt.ref("prep_nba_elo_latest")
+    nba_elo_latest = (dbt.ref("prep_nba_elo_to_date")
         .project("game_id, visiting_team, home_team, winning_team, game_result")
         .order("game_id")
     )
