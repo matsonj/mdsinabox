@@ -71,7 +71,7 @@ FROM reg_season_actuals_enriched
 ```elo_latest
 SELECT *,
     elo_rating - original_rating as since_start
-FROM prep_elo_post
+FROM latest_elo_by_team
 ```
 
 ```seed_details
@@ -118,28 +118,28 @@ GROUP BY ALL
 ```most_recent_games
 SELECT
     date,
-    visiting_team,
+    RL.visiting_team,
     '@' as " ",
-    home_team,
-    score2 || ' - ' || score1 as score,
-    winning_team,
+    RL.home_team,
+    RL.home_team_score::int || ' - ' || RL.visiting_team_score::int as score,
+    RL.winning_team,
     ABS(elo_change) AS elo_change_num1
-FROM prep_results_log RL
-LEFT JOIN prep_nba_elo_latest AR ON
-    AR._smart_source_lineno - 1 = RL.game_id
+FROM latest_results RL
+LEFT JOIN elo_ratings_over_time AR ON
+    AR.game_id = RL.game_id
 ORDER BY date desc
 ```
 
 ```game_trend
 with cte_games AS (
 SELECT 0 as game_id, team, original_rating as elo_rating, 0 as elo_change 
-FROM prep_elo_post
+FROM latest_elo_by_team
 UNION ALL
 SELECT game_id, visiting_team as team, visiting_team_elo_rating as elo_rating, elo_change
-FROM prep_results_log
+FROM elo_ratings_over_time
 UNION ALL
 SELECT game_id, home_team as team, home_team_elo_rating as elo_rating, elo_change*-1 as elo_change
-FROM prep_results_log )
+FROM elo_ratings_over_time )
 SELECT 
     COALESCE(AR.date,'2022-10-17') AS date,
     RL.team, 
@@ -148,7 +148,7 @@ SELECT
     sum(RL.elo_change) over (partition by team order by COALESCE(AR.date,'2022-10-17') asc rows between unbounded preceding and current row) as cumulative_elo_change_num0
 FROM cte_games RL
 LEFT JOIN prep_nba_elo_latest AR ON
-    AR._smart_source_lineno - 1 = RL.game_id
+    AR.game_id = RL.game_id
 ```
 
 ## Season-to-date Results
