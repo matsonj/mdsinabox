@@ -12,8 +12,8 @@ on:
         required: true
 
 jobs:
-  manual_build:
-    name:  manual_build
+  buena_vista:
+    name:  buena vista
     runs-on: ubuntu-latest
 
     steps:
@@ -23,13 +23,16 @@ jobs:
           python-version: '3.9'
 
       - name: python basics
-        run: make install
+        run: | 
+          make install
+          make up
 
+  elt:
+    runs-on: ubuntu-latest
+    needs: buena_vista
+    steps:
       - name: run alto
         run: alto tap-spreadsheets-anywhere:target-parquet
         
-      - name: spin up buena vista
-        run: make up
-
       - name: build pipeline
-        run: dbt build
+        run: dbt build        
