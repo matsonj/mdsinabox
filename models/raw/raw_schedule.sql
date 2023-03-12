@@ -1,1 +1,1 @@
-SELECT * FROM 'data/nba_schedule_2023.csv'
+SELECT * FROM 'data/data_catalog/psa/nba_schedule_2023/*.parquet'

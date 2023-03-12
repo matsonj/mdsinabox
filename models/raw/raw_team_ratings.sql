@@ -1,1 +1,1 @@
-SELECT * FROM 'data/team_ratings.csv'
+SELECT * FROM 'data/data_catalog/psa/team_ratings/*.parquet'
