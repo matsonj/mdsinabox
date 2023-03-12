@@ -6,3 +6,5 @@ logs/
 *.wal
 .alto/
 data/data_catalog/
+.alto.json
+.alto.secrets.yaml
