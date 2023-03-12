@@ -4,3 +4,5 @@ dbt_packages/
 logs/
 *.duckdb
 *.wal
+.alto/
+data/data_catalog/
