@@ -26,7 +26,10 @@ jobs:
         run: make install
 
       - name: run alto
-        run: alto tap-spreadsheets-anywhere:target-parquet 
+        run: alto tap-spreadsheets-anywhere:target-parquet
+        
+      - name: spin up buena vista
+        run: make up
 
       - name: build pipeline
         run: dbt build
