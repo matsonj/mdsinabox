@@ -12,8 +12,8 @@ on:
         required: true
 
 jobs:
-  buena_vista:
-    name:  buena vista
+  manual_build:
+    name: manual_build
     runs-on: ubuntu-latest
 
     steps:
@@ -27,12 +27,8 @@ jobs:
           make install
           make up &
 
-  elt:
-    runs-on: ubuntu-latest
-    needs: buena_vista
-    steps:
       - name: run alto
         run: alto tap-spreadsheets-anywhere:target-parquet
         
       - name: build pipeline
-        run: dbt build        
+        run: dbt build
