@@ -25,7 +25,7 @@ jobs:
       - name: python basics
         run: | 
           make install
-          make up
+          make up &
 
   elt:
     runs-on: ubuntu-latest
