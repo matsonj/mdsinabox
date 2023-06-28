@@ -4,17 +4,6 @@ default:
   load_path: raw
   project_name: mdsinabox
   taps:
-    tap-carbon-intensity:
-      capabilities:
-      - state
-      - catalog
-      config:
-        any_key: '**This will end up in a config.json passed to the tap**'
-        other_key: '**You can find config on Github or MeltanoHub**'
-      load_path: carbon_intensity
-      pip_url: git+https://gitlab.com/meltano/tap-carbon-intensity.git#egg=tap_carbon_intensity
-      select:
-      - '*.*'
     tap-spreadsheets-anywhere:
       pip_url: git+https://github.com/ets/tap-spreadsheets-anywhere.git#egg=tap-spreadsheets-anywhere
       config:
