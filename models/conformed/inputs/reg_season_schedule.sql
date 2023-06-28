@@ -11,4 +11,5 @@ SELECT
 FROM {{ ref( 'prep_nba_elo_latest' ) }} AS S
 LEFT JOIN {{ ref( 'ratings' ) }} V ON V.team = S.team2
 LEFT JOIN {{ ref( 'ratings' ) }} H ON H.team = S.team1
+WHERE S.game_id < 1231
 GROUP BY ALL
