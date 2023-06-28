@@ -2,17 +2,13 @@ config:
   send_anonymous_usage_stats: False
   use_colors: True
 nba_monte_carlo:
-  target: bv
+  target: dev
   outputs:
-    bv:
-      type: bv_duckdb
-      host: 0.0.0.0
-      port: 5433
-      database: main
-      schema: main
-      delegate: dev
-      api_port: 3456
     dev:
       type: duckdb
-      threads: 8
+      threads: 4
       path: nba_monte_carlo.duckdb
+      remote:
+        host: 0.0.0.0
+        port: 5433
+        user: jacob
